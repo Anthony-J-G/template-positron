@@ -1,15 +1,48 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
+# Compilation Directories
 /dist
 /tmp
 /out-tsc
 /bazel-out
+/Binaries
 
-# Node
+# Compiled Executables
+*.exe
+*.out
+*.app
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+
+# Prerequisites
+*.d
+
+# NodeJS
 /node_modules
 npm-debug.log
 yarn-error.log
+
 
 # IDEs and editors
 .idea/
@@ -18,6 +51,7 @@ yarn-error.log
 .c9/
 *.launch
 .settings/
+# Sublime
 *.sublime-workspace
 
 # Visual Studio Code

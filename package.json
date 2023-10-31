@@ -1,10 +1,13 @@
 {
   "name": "my-angular-app",
   "version": "0.0.0",
+  "main": "Binaries/electron/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "compile": "tsc --p Source/electron && ng build",
+    "electron:start": "electron .",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
