@@ -8,7 +8,7 @@
     ]
   },
   "include": [
-    "Source/GUI/**/*.spec.ts",
-    "Source/GUI/**/*.d.ts"
+    "Source/AngularGUI/**/*.spec.ts",
+    "Source/AngularGUI/**/*.d.ts"
   ]
 }

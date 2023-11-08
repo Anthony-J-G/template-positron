@@ -7,14 +7,14 @@ import * as url from "url";
 
 
 var win: BrowserWindow;
-var isRelease: boolean = false;
+var isRelease: boolean = true;
 
 function createApp() {
 
   //Browser Window common options
   let browserOptions = { 
     icon: path.join(__dirname, '../src/assets/icon/png/64x64.png'), 
-    title: 'OoT Randomizer GUI', 
+    title: 'Positron Template Project', 
     opacity: 1.00, 
     backgroundColor: '#000000', 
     minWidth: 880, 
@@ -68,7 +68,13 @@ function createApp() {
 
       throw Error("No Electron GUI found! Did you compile it properly?");
     }
-
+    
+    ipcMain.on('set-title', (event, title) => {
+      const webContents = event.sender
+      const win = BrowserWindow.fromWebContents(webContents)
+      win.setTitle(title)
+    })
+  
     win.loadURL(
       indexPath
     );
@@ -83,7 +89,7 @@ function createApp() {
 
 }
 
-//LISTENERS
+//App LISTENERS
 app.on("ready", createApp);
 
 //macOS exclusive, handles soft re-launches
@@ -103,4 +109,12 @@ app.on("window-all-closed", () => {
       app.quit();
     }, 1000);
   }
+});
+
+
+// IPC Main LISTENERS
+ipcMain.on('message-from-renderer', (event, arg) => {
+  // Handle the message from the renderer process
+  // You can send a response back to the renderer process if needed
+  event.sender.send('message-to-renderer', 'This is a response from main process');
 });

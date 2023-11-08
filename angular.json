@@ -7,25 +7,25 @@
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "Source/GUI",
+      "sourceRoot": "Source/AngularGUI",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "Binaries/GUI",
-            "index": "Source/GUI/index.html",
-            "main": "Source/GUI/main.ts",
+            "index": "Source/AngularGUI/index.html",
+            "main": "Source/AngularGUI/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "Source/GUI/favicon.ico",
-              "Source/GUI/assets"
+              "Source/AngularGUI/favicon.ico",
+              "Source/AngularGUI/assets"
             ],
             "styles": [
-              "Source/GUI/styles.css"
+              "Source/AngularGUI/styles.css"
             ],
             "scripts": []
           },
@@ -83,11 +83,11 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "Source/GUI/favicon.ico",
-              "Source/GUI/assets"
+              "Source/AngularGUI/favicon.ico",
+              "Source/AngularGUI/assets"
             ],
             "styles": [
-              "Source/GUI/styles.css"
+              "Source/AngularGUI/styles.css"
             ],
             "scripts": []
           }
