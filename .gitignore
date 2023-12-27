@@ -67,15 +67,18 @@
 
 # Script files
 !*.bat
+!*.command
+!*.gypi
+!*.gyp
+!*.js
 !*.lua
-!*.sh
 !*.pl
 !*.py
 !*.ps1
-!*.js
+!*.sh
 !*.ts
 !*.tsx
-!*.command
+
 
 # Other configuration and markup files
 !*.ini
