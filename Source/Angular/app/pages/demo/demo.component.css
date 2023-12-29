@@ -17,43 +17,21 @@ h6 {
 }
 
 p {
+    font-size: 1.2rem;
+    font-weight: 500;
     margin: 0;
 }
 
-.spacer {
-    flex: 1;
-}
+h1.pop-text,
+h2.pop-text,
+h3.pop-text,
+h4.pop-text,
+h5.pop-text,
+h6.pop-text,
+p.pop-text {
+    color: #fafafa;
+    text-shadow: 2px 2px 5px #0c0c0c;
 
-.toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-}
-
-.toolbar img {
-    margin: 0 16px;
-}
-
-.toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-}
-
-.toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-}
-
-.toolbar #twitter-logo:hover,
-.toolbar #youtube-logo:hover {
-    opacity: 0.8;
 }
 
 .content {
@@ -138,21 +116,6 @@ svg.material-icons:not(:last-child) {
     margin-left: 60px;
 }
 
-svg#rocket {
-    width: 80px;
-    position: absolute;
-    left: -10px;
-    top: -24px;
-}
-
-svg#rocket-smoke {
-    height: calc(100vh - 95px);
-    position: absolute;
-    top: 10px;
-    right: 180px;
-    z-index: -10;
-}
-
 a,
 a:visited,
 a:hover {
@@ -217,6 +180,8 @@ a:hover {
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
+
+
 footer {
     margin-top: 8px;
     display: flex;
@@ -260,6 +225,21 @@ svg#clouds {
     left: -230px;
     z-index: -10;
     width: 1920px;
+}
+
+svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+}
+
+svg#rocket-smoke {
+    height: calc(100vh - 95px);
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
 }
 
 /* Responsive Styles */
