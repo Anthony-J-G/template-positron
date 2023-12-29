@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./demo.component.css']
 })
 export class DemoPageComponent {
-  title = 'my-angular-app';
+  title = 'positron-demo';
 }
