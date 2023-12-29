@@ -17,7 +17,21 @@ h6 {
 }
 
 p {
+    font-size: 1.2rem;
+    font-weight: 500;
     margin: 0;
+}
+
+h1.pop-text,
+h2.pop-text,
+h3.pop-text,
+h4.pop-text,
+h5.pop-text,
+h6.pop-text,
+p.pop-text {
+    color: #fafafa;
+    text-shadow: 2px 2px 5px #0c0c0c;
+
 }
 
 .spacer {
