@@ -1,12 +1,12 @@
 {
   "name": "positron-template",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "Binaries/electron/main.js",
   "scripts": {
     "ng": "ng",
     "start": "electron-forge start",
     "build": "ng build",
-    "compile": "tsc --p Source/ElectronRuntime && ng build",
+    "compile": "tsc --p Source/Electron && ng build",
     "electron:start": "npm run compile && electron .",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

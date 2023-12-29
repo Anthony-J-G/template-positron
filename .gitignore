@@ -1,4 +1,172 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+#
+# This file tells Git about engine files that never really belong in source control.  They are usually build products, log
+# files and intermediate files generated from a compiler or the engine runtime.
+#
+#
+# NOTE:
+#  Paths that start with / match paths relative to the root (where the .gitignore file is)
+#  Paths that end with / will match a folder and all files under it (but not a regular file with no extension)
+#  Use * for wildcards.  Wildcards stop at path separators
+#  Use ** for a wildcard that spans path separators
+#  Paths in this file should use forward slash characters, not back slashes
+#  Use \ to escape special characters like ! and #
+#  Use ! to negate a previous pattern.  But it doesn't work if the parent sub-folder was masked out already.
+#
+
+# Ignore all files by default, but scan all directories
+*
+!*/
+
+# C/C++ source files
+!*.c
+!*.cc
+!*.cpp
+!*.cpp.template
+!*.h
+!*.h.template
+!*.hpp
+!*.inl
+!*.inc
+!*.m
+!*.mm
+!*.rc
+!*.rc2
+!*.def
+!*.exp
+!*.manifest
+
+# ISPC files
+!*.ispc
+!*.isph
+
+# Re-ignore vs host manifest
+*.vshost.exe.manifest
+
+# Java source files
+!*.java
+!*.java.template
+
+# C# source files
+!*.cs
+!*.cs.template
+!*.aspx
+!*.resx
+
+# Shader formats
+!*.usf
+!*.ush
+!*.hlsl
+!*.glsl
+
+# Text files
+!*.txt
+!*.md
+
+# Swift files
+*.swift
+
+# Script files
+!*.bat
+!*.command
+!*.gypi
+!*.gyp
+!*.js
+!*.lua
+!*.pl
+!*.py
+!*.ps1
+!*.sh
+!*.ts
+!*.tsx
+
+
+# Other configuration and markup files
+!*.ini
+!*.json
+!*.tps
+!*.xml
+!*.xaml
+!*.uproject
+!*.uplugin
+!*.html
+!*.html.template
+!*.css
+!*.udn
+!*.config
+!*.version
+!.git*
+!.dockerignore
+!.editorconfig
+!.plist
+!.yaml
+!.yml
+
+# Specific names
+!README
+!AUTHORS
+!LICENSE
+!FAQ
+!VERSION
+!ChangeLog
+
+# Ignore Unix backup files
+*~
+
+# Ignore projects and makefiles
+*.cmake
+*.mk
+*.dsp
+*.dsw
+*.csproj
+*.vcproj
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.xcodeproj
+*.xcconfig
+*.vsprops
+*.snippet
+Dockerfile
+Makefile
+Makefile.*
+Settings.settings
+
+# Ignore 3rd party libraries by default
+[Ll]ibraries/**
+[Ll]ib/**
+[Ll]ibs/**
+[Vv]endor/**
+# Add exception for premake5 build system
+!Libraries/Premake5
+!Libraries/Premake5/premake5.exe
+!Libraries/Premake5/LICENSE.txt
+
+# Ignore all generated binaries by default
+[Bb]inaries/
+[Bb]inaries/**
+[Bb]in/
+[Bb]in/**
+
+# Ignore intermediate folders
+[Ii]ntermediate/
+[Ii]ntermediate/**
+[Bb]in-[Ii]nt/
+[Bb]in-[Ii]nt/**
+[Oo]bj/
+
+# Ignore Misc. Build Folders
+[Bb]uild/
+[Bb]uild/**
+
+# Ignore VS / VS Code settings directory
+.vs
+.vscode
+
+# Ignore CLion directory
+.idea/
+
+# Annoying windows files
+[Dd]esktop.ini
 
 # Compiled output
 # Compilation Directories
@@ -9,6 +177,7 @@
 /Binaries
 
 # Compiled Executables
+*.exp
 *.exe
 *.out
 *.app
