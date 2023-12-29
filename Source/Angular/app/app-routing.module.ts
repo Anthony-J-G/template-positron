@@ -4,7 +4,7 @@ import { DemoPageComponent } from './pages/demo/demo.component';
 import { BackendConnTestPageComponent } from './pages/backend-conn-test/backend-conn-test.component';
 
 const routes: Routes = [
-  { path: 'demo', component: DemoPageComponent },
+  { path: '', component: DemoPageComponent },
   { path: 'test-backend', component: BackendConnTestPageComponent }
 ];
 
