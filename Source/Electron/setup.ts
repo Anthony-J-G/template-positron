@@ -57,7 +57,7 @@ class EntryPoint {
 
 
 export class ElectronProcess {
-    private win: BrowserWindow      = null;
+    private mainWindow: BrowserWindow      = null;
     private browserOptions: any     = null;
     private entryPoints: Object     = {};
   
@@ -73,13 +73,13 @@ export class ElectronProcess {
         subMenu.append(new MenuItem({
             label: 'Toggle Developer Tools',
             accelerator: os.platform() === 'darwin' ? 'Alt+Cmd+I' : 'Ctrl+Shift+I',
-            click: () => { this.win.webContents.openDevTools(); }
+            click: () => { this.mainWindow.webContents.openDevTools(); }
         }));
 
         subMenu.append(new MenuItem({
             label: 'Refresh GUI',
             accelerator: 'F5',
-            click: () => { this.win.webContents.reload(); }
+            click: () => { this.mainWindow.webContents.reload(); }
         }));
     }
 
@@ -100,7 +100,7 @@ export class ElectronProcess {
 
 
     Load(config_type: ConfigTypeFlags): void {
-        this.win = new BrowserWindow(this.browserOptions);
+        this.mainWindow = new BrowserWindow(this.browserOptions);
         const config = this.entryPoints[config_type];
         
         switch (config) {
@@ -114,7 +114,7 @@ export class ElectronProcess {
                 throw Error(`Improper Configuration Found: ${config_type}. Was the desired configuration added properly?`);
 
             default:
-                this.win.loadURL(config.GetEntryPoint());
+                this.mainWindow.loadURL(config.GetEntryPoint());
           }
 
         ipcMain.on('set-title', (event, title) => {
@@ -123,11 +123,11 @@ export class ElectronProcess {
             win.setTitle(title)
         })
 
-        this.win.once('ready-to-show', () => {
-            this.win.show();
+        this.mainWindow.once('ready-to-show', () => {
+            this.mainWindow.show();
         
-            if (config & ConfigTypeFlags.Debug && !this.win.isMaximized()) {
-                this.win.webContents.openDevTools();
+            if (config & ConfigTypeFlags.Debug && !this.mainWindow.isMaximized()) {
+                this.mainWindow.webContents.openDevTools();
             } //Open dev tools automatically if dev mode and not maximized
                 
         });        
@@ -136,7 +136,7 @@ export class ElectronProcess {
   
     // Method to get the full name of the person
     hasWindow(): boolean {
-        return !(this.win === null);
+        return !(this.mainWindow === null);
     }
 
 }

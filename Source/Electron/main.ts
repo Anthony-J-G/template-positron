@@ -8,7 +8,7 @@ import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
 
 
 // const TEST_ADDON = require("../../build/Release/test_binding");
-const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Debug;
+const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Release;
 
 
 
@@ -32,10 +32,10 @@ const angularBrowserOptions = {
 };
 const angular_process: ElectronProcess = new ElectronProcess(angularBrowserOptions);
 angular_process.AddEntryPoint(
-  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Debug, SourceTypeFlags.Local
+  'http://localhost:4200', ConfigTypeFlags.Release, SourceTypeFlags.Remote
 );
 angular_process.AddEntryPoint(
-  'http://localhost:8080', ConfigTypeFlags.Release, SourceTypeFlags.Remote
+  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Debug, SourceTypeFlags.Local
 );
 
 
