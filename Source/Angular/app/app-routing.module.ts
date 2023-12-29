@@ -6,7 +6,6 @@ import { BackendConnTestPageComponent } from './pages/backend-conn-test/backend-
 const routes: Routes = [
   { path: 'demo', component: DemoPageComponent },
   { path: 'test-backend', component: BackendConnTestPageComponent }
-
 ];
 
 @NgModule({
