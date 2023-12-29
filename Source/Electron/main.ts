@@ -3,15 +3,18 @@ import * as os from "os";
 import * as fs from "fs";
 import * as path from "path";
 import * as url from "url";
-import { ElectronProcess } from "./setup";
+import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
 
-// const addon = require("../../build/Release/test_binding");
 
+
+// const TEST_ADDON = require("../../build/Release/test_binding");
+const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Debug;
 
 
 
 const angularBrowserOptions = { 
   icon: path.join(__dirname, '../src/assets/icon/png/64x64.png'), 
+  // titleBarStyle: 'hidden',
   title: 'Positron Template Project', 
   opacity: 1.00, 
   backgroundColor: '#000000', 
@@ -23,23 +26,29 @@ const angularBrowserOptions = {
   webPreferences: { 
   sandbox: false, 
   nodeIntegration: false, 
-  contextIsolation: true, 
+  contextIsolation: true,
   webviewTag: false, 
   } 
 };
 const angular_process: ElectronProcess = new ElectronProcess(angularBrowserOptions);
-
+angular_process.AddEntryPoint(
+  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Debug, SourceTypeFlags.Local
+);
+angular_process.AddEntryPoint(
+  'http://localhost:8080', ConfigTypeFlags.Release, SourceTypeFlags.Remote
+);
 
 
 //App LISTENERS
-app.on("ready", () => {
-  angular_process.Load(true);
+app.on("ready", async _ => {
+  angular_process.Load(CONFIGURATION);
+  
 });
 
 //macOS exclusive, handles soft re-launches
-app.on("activate", () => {
+app.on("activate", async _ => {
   if (!angular_process.hasWindow()) {
-    angular_process.Load(true);
+    angular_process.Load(CONFIGURATION);
   }
   
 });
