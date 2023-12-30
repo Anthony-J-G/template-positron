@@ -2,22 +2,25 @@
     <table>
         <thead>
             <tr>
-                <td>Column 1</td>
-                <td>Column 2</td>
-                <td>Column 3</td>
-                <td>Column 4</td>
+                <th *ngFor="let column of columns; index as i; first as isFirst">
+                    {{ column }}
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Row 1</td>
-                <td>random number 1</td>
-                <td>random number 2</td>
-                <td>random number 3</td>
+            <tr *ngFor="let row of data; index as i; first as isFirst">
+                <td>{{ row["temple"] }}</td>
+                <td>{{ row["boss"] }}</td>
+                <td>{{ row["item"] }}</td>
+                <td>{{ row["great_fairy"] }}</td>
             </tr>
         </tbody>
         
     </table>
+    <button (click)="onClick()">Reload Table</button>
+
+    <button (click)="openFileDialog()">Check File</button>
+    <div>{{ getSelectedFile() }}</div>
 
     <p>backend-conn-test works!</p>
 </div>

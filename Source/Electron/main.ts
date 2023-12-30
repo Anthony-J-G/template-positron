@@ -1,4 +1,4 @@
-import { app, shell, session, ipcMain, BrowserWindow, globalShortcut, Menu, MenuItem } from "electron";
+import { app, shell, session, ipcMain, dialog, globalShortcut } from "electron";
 import * as os from "os";
 import * as fs from "fs";
 import * as path from "path";
@@ -11,9 +11,10 @@ import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
 const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Release;
 
 
-
 const angularBrowserOptions = { 
-  icon: path.join(__dirname, '../src/assets/icon/png/64x64.png'), 
+  icon: path.join(
+    process.cwd(), 'Source/Angular/favicon.ico'
+  ),
   // titleBarStyle: 'hidden',
   title: 'Positron Template Project', 
   opacity: 1.00, 
@@ -24,10 +25,13 @@ const angularBrowserOptions = {
   height: 888,
   show: false, 
   webPreferences: { 
-  sandbox: false, 
-  nodeIntegration: false, 
-  contextIsolation: true,
-  webviewTag: false, 
+    preload: path.join(
+      process.cwd(), 'Source/Angular/preload.js'
+    ),
+    sandbox: false, 
+    nodeIntegration: false, 
+    contextIsolation: true,
+    webviewTag: false, 
   } 
 };
 const angular_process: ElectronProcess = new ElectronProcess(angularBrowserOptions);
@@ -39,8 +43,21 @@ angular_process.AddEntryPoint(
 );
 
 
+async function handleFileOpen () {
+  const { canceled, filePaths } = await dialog.showOpenDialog({})
+  if (!canceled) {
+    return filePaths[0]
+  }
+}
+
+
 //App LISTENERS
 app.on("ready", async _ => {
+  ipcMain.handle('dialog:openFile', handleFileOpen);
+  ipcMain.on('ping-main', async () => {
+    console.log("Hello from Renderer Process in Main Process!");
+  }) 
+
   angular_process.Load(CONFIGURATION);
   
 });
@@ -63,12 +80,4 @@ app.on("window-all-closed", () => {
       app.quit();
     }, 1000);
   }
-});
-
-
-// IPC Main LISTENERS
-ipcMain.on('message-from-renderer', (event, arg) => {
-  // Handle the message from the renderer process
-  // You can send a response back to the renderer process if needed
-  event.sender.send('message-to-renderer', 'This is a response from main process');
 });
