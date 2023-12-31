@@ -115,13 +115,7 @@ export class ElectronProcess {
 
             default:
                 this.mainWindow.loadURL(config.GetEntryPoint());
-          }
-
-        ipcMain.on('set-title', (event, title) => {
-            const webContents = event.sender
-            const win = BrowserWindow.fromWebContents(webContents)
-            win.setTitle(title)
-        })
+        }
 
         this.mainWindow.once('ready-to-show', () => {
             this.mainWindow.show();

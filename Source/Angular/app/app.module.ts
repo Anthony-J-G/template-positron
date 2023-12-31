@@ -16,7 +16,9 @@ import { BackendConnTestPageComponent } from './pages/backend-conn-test/backend-
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: Window, useValue: window }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

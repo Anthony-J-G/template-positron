@@ -1,24 +1,35 @@
 <div class="content">
+
+    <h2 class="pop-text">Load Table</h2>
+    <p class="pop-text">Click to load a table from the backend using SQLite3!
+        <button class="option" (click)="onClick()">Reload Table</button>
+    </p>
     <table>
         <thead>
             <tr>
-                <td>Column 1</td>
-                <td>Column 2</td>
-                <td>Column 3</td>
-                <td>Column 4</td>
+                <th *ngFor="let column of columns; index as i; first as isFirst">
+                    {{ column }}
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Row 1</td>
-                <td>random number 1</td>
-                <td>random number 2</td>
-                <td>random number 3</td>
+            <tr *ngFor="let row of data; index as i; first as isFirst">
+                <td>{{ row["temple"] }}</td>
+                <td>{{ row["boss"] }}</td>
+                <td>{{ row["item"] }}</td>
+                <td>{{ row["great_fairy"] }}</td>
             </tr>
         </tbody>
         
     </table>
 
-    <p>backend-conn-test works!</p>
+    <h2 class="pop-text">Get File Path</h2>
+    <p class="pop-text">Select a file path using your Native File Explorer!</p>
+    <div class="card highlight-card card-small">
+        <button (click)="openFileDialog()">Check File</button>
+        <span>{{ getSelectedFile() }}</span>
+
+    </div>
+  
 </div>
 
