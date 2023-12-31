@@ -29,6 +29,12 @@ export class BackendConnTestPageComponent {
     this.api.ping()
   }
 
+  loadTable(): void {
+    
+
+
+  }
+
   getSelectedFile(): string {
     if (this.selected_file == "") {
       return "No File Selected!";

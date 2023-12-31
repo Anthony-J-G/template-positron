@@ -53,7 +53,9 @@ async function handleFileOpen () {
 
 //App LISTENERS
 app.on("ready", async _ => {
-  ipcMain.handle('dialog:openFile', handleFileOpen);
+  ipcMain.handle('dialog:openFile', (event, ...args) => {
+    return handleFileOpen();
+  });
   ipcMain.on('ping-main', async () => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 

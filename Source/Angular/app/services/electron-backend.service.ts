@@ -12,7 +12,6 @@ export class ElectronBackendService {
     if (this.window['api' as api] !== undefined) {
       this.electronApi = this.window['api' as api];
     }
-    console.log(this.electronApi)
   }
 
   canUseElectron() {
