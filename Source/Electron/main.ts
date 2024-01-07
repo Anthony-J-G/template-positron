@@ -4,11 +4,15 @@ import * as fs from "fs";
 import * as path from "path";
 import * as url from "url";
 import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
+import { LaunchPython } from "./python";
+import { openDatabase } from "./sql";
 
 
 
 // const TEST_ADDON = require("../../build/Release/test_binding");
 const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Release;
+
+openDatabase();
 
 
 const angularBrowserOptions = { 
@@ -56,6 +60,9 @@ app.on("ready", async _ => {
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
   });
+  ipcMain.on('python:test-script', async () => {
+    LaunchPython("Source/Python/main.py", []);
+  })
   ipcMain.on('ping-main', async () => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackendConnTestPageComponent } from './backend-conn-test.component';
+import { BackendPageComponent } from './backend.component';
 
 describe('BackendConnTestComponent', () => {
-  let component: BackendConnTestPageComponent;
-  let fixture: ComponentFixture<BackendConnTestPageComponent>;
+  let component: BackendPageComponent;
+  let fixture: ComponentFixture<BackendPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BackendConnTestPageComponent]
+      declarations: [BackendPageComponent]
     });
-    fixture = TestBed.createComponent(BackendConnTestPageComponent);
+    fixture = TestBed.createComponent(BackendPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

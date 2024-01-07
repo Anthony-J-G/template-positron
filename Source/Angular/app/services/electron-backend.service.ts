@@ -27,6 +27,17 @@ export class ElectronBackendService {
     this.electronApi.pingMain();
   }
 
+
+  async runPythonFile(): Promise<string> {
+    if (!this.canUseElectron()) {
+      console.error("Electron API doesn't exist!");
+      throw Error("Electron API not initialized");
+    }
+    return await this.electronApi.launchPython();
+
+  }
+
+
   async queryFilePath(): Promise<string> {
     if (!this.canUseElectron()) {
       console.error("Electron API doesn't exist!");
