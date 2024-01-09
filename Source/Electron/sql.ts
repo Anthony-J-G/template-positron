@@ -3,38 +3,92 @@ import * as path from "path";
 
 // Open a SQLite database in-memory (you can use a file path for a persistent database)
 // const db = new sqlite3.Database(':memory:');
+const DATABASE_PATH = path.join(process.cwd(), 'test.sqlite');
 
-export function openDatabase() {
-    const db = new sqlite3.Database(path.join(process.cwd(), 'test.db'));
-    db.run(
-        `CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY,
-            name TEXT
-        );`
-    );
+
+
+class Table {
+    private tableName: string = "";
+    columns: Array<string> = [];
+    rows: Array<any> = [];
+
+    // path.join(process.cwd(), 'test.db')
+    constructor(table_name) {
+        this.tableName = table_name;
+    }
+
 }
 
 
-function idk() {
+async function loadTableColumns(table_name: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+        const db = new sqlite3.Database(DATABASE_PATH);
+        const tmp: Table = new Table(table_name);
+
+        const pragmaStmt = `PRAGMA table_info(${table_name});`;
+        var columns: Array<string> = [];
+        db.all(pragmaStmt, [], (err, rows) => {
+            if (err) {
+                reject(err)
+            }
+            
+            var i: number = 0
+            rows.forEach((row) => {
+                columns.push(row["name"]);
+            });
+            db.close();
+            resolve(columns);
+        });
+    });
+}
+
+
+async function loadTableData(table_name: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+        const db = new sqlite3.Database(DATABASE_PATH);
+
+        const selectStmt = `SELECT * FROM ${table_name}`;
+        var data: Array<any> = [];
+        db.all(selectStmt, [], (err, rows) => {
+            if (err) {
+                reject(err)
+            }
+            
+            var i: number = 0
+            rows.forEach((row) => {
+                data.push(row);
+            });
+            db.close();
+            resolve(data);
+        });
+    });
+}
+
+
+export function openDatabase() {
     const db = new sqlite3.Database(path.join(process.cwd(), 'test.db'));
-    // Create a table
-    db.run('CREATE TABLE users (id INT, name TEXT)');
+}
 
-    // Insert data
-    const userId = 1;
-    const userName = 'John Doe';
-    db.run('INSERT INTO users (id, name) VALUES (?, ?)', [userId, userName]);
 
-    // Query data
-    db.each('SELECT id, name FROM users', (err, row) => {
-        if (err) {
-            console.error(err.message);
-        } else {
-            // console.log(`User ID: ${row.id}, Name: ${row.name}`);
-        }
+export async function getDemoTable(): Promise<Table> {
+    const demoTableName = "Temples"
+    const targetTable: Table = new Table(demoTableName);
+
+    await loadTableColumns(demoTableName)
+    .then(columns => {
+        targetTable.columns = columns;
+    })
+    .catch(error => {
+        console.error('Error loading table:', error);
     });
 
-    // Close the database connection
-    db.close();
+    await loadTableData(demoTableName)
+    .then(data => {
+        targetTable.rows = data;
+    })
+    .catch(error => {
+        console.error('Error loading table:', error);
+    });
 
+    return targetTable;
 }

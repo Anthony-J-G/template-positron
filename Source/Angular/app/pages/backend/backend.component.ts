@@ -11,21 +11,11 @@ import { ElectronBackendService } from '../../services/electron-backend.service'
 export class BackendPageComponent {
 
   private selected_file: string = "";
+  fetchedData: Array<any> = [];
+  columns: Array<string> = [];
+  
 
   constructor(private api: ElectronBackendService) { }
-
-  columns: Array<string> = [
-    "Temple", "Boss", "Item", "Great Fairy Reward"
-  ];
-
-  data: Array<any> = [
-    {temple: "Woodfall", boss: "Odoolwa", item: "Bow", great_fairy: "Super Spin Attack"},
-    {temple: "Snowhead", boss: "Goht", item: "Fire Arrows", great_fairy: "Double Magic Meter"},
-    {temple: "Great Bay", boss: "Gyorg", item: "Ice Arrows", great_fairy: "Double Defense"},
-    {temple: "Stone Tower", boss: "Twinmold", item: "Light Arrows", great_fairy: "Great Fairy's Sword"}
-  ];
-
-  fetchedData: Array<any> = [];
 
 
   onClick(): void {
@@ -35,7 +25,16 @@ export class BackendPageComponent {
 
   loadTable(): void {
     this.fetchedData = [];
+    
+    this.api.fetchDemoTable().then((data: any) => {
+      console.log(data)
 
+      this.columns = data.columns;
+      this.fetchedData = data.rows;
+
+    }).catch((error: any) => {
+      console.log(error);
+    });
   }
 
 
@@ -44,7 +43,7 @@ export class BackendPageComponent {
   }
 
 
-  getSelectedFile(): string {
+  getSelectedFile(): string { 
     if (this.selected_file == "") {
       return "No File Selected!";
     }

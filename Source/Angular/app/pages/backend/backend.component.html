@@ -23,11 +23,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let row of data; index as i; first as isFirst">
-                    <td>{{ row["temple"] }}</td>
-                    <td>{{ row["boss"] }}</td>
-                    <td>{{ row["item"] }}</td>
-                    <td>{{ row["great_fairy"] }}</td>
+                <tr *ngFor="let row of fetchedData; index as i; first as isFirstI">
+                    <td *ngFor="let col of columns; index as j; first as isFirstJ">
+                        {{ row[col] }}
+                    </td>
                 </tr>
             </tbody>
             

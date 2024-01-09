@@ -5,14 +5,13 @@ import * as path from "path";
 import * as url from "url";
 import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
 import { LaunchPython } from "./python";
-import { openDatabase } from "./sql";
+import { getDemoTable, openDatabase } from "./sql";
 
 
 
 // const TEST_ADDON = require("../../build/Release/test_binding");
 const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Release;
 
-openDatabase();
 
 
 const angularBrowserOptions = { 
@@ -22,17 +21,17 @@ const angularBrowserOptions = {
   // titleBarStyle: 'hidden',
   title: 'Positron Template Project', 
   opacity: 1.00, 
-  backgroundColor: '#000000', 
+  backgroundColor: '#965BAE',
   minWidth: 880, 
   minHeight: 680, 
-  width: 961, 
+  width: 961,
   height: 888,
   show: false, 
   webPreferences: { 
     preload: path.join(
       process.cwd(), 'Source/Angular/preload.js'
     ),
-    sandbox: false, 
+    sandbox: false,
     nodeIntegration: false, 
     contextIsolation: true,
     webviewTag: false, 
@@ -60,9 +59,15 @@ app.on("ready", async _ => {
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
   });
-  ipcMain.on('python:test-script', async () => {
+
+  ipcMain.handle('sql:get-demo', async () => {
+    return await getDemoTable();
+  });
+
+  ipcMain.handle('python:test-script', async () => {
     LaunchPython("Source/Python/main.py", []);
-  })
+  });
+
   ipcMain.on('ping-main', async () => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 
