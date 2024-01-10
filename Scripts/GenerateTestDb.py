@@ -2,7 +2,7 @@ import sqlite3
 
 
 
-DATABASE_PATH = "test.sqlite"
+DATABASE_PATH = "../test.sqlite"
 TABLE_NAME = "Temples"
 
 

@@ -5,14 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoPageComponent } from './pages/demo/demo.component';
 import { BackendPageComponent } from './pages/backend/backend.component';
-import { PythonPageComponent } from './pages/python/python.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoPageComponent,
     BackendPageComponent,
-    PythonPageComponent,
   ],
   imports: [
     BrowserModule,
