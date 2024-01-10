@@ -11,6 +11,8 @@ class Table {
     private tableName: string = "";
     columns: Array<string> = [];
     rows: Array<any> = [];
+    err: any = null;
+    errno: number = -1;
 
     // path.join(process.cwd(), 'test.db')
     constructor(table_name) {
@@ -31,7 +33,10 @@ async function loadTableColumns(table_name: string): Promise<any> {
             if (err) {
                 reject(err)
             }
-            
+            if (rows === undefined) {
+                resolve(columns)
+            }
+
             var i: number = 0
             rows.forEach((row) => {
                 columns.push(row["name"]);
@@ -53,7 +58,10 @@ async function loadTableData(table_name: string): Promise<any> {
             if (err) {
                 reject(err)
             }
-            
+            if (rows === undefined) {
+                resolve(data)
+            }
+
             var i: number = 0
             rows.forEach((row) => {
                 data.push(row);
@@ -79,7 +87,8 @@ export async function getDemoTable(): Promise<Table> {
         targetTable.columns = columns;
     })
     .catch(error => {
-        console.error('Error loading table:', error);
+        targetTable.err = error;
+        console.error('Error loading table while attempting to read columns\n', error);
     });
 
     await loadTableData(demoTableName)
@@ -87,7 +96,8 @@ export async function getDemoTable(): Promise<Table> {
         targetTable.rows = data;
     })
     .catch(error => {
-        console.error('Error loading table:', error);
+        targetTable.err = error;
+        console.error('Error loading table while attempting to read data\n', error);
     });
 
     return targetTable;

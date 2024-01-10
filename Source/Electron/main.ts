@@ -10,7 +10,7 @@ import { getDemoTable, openDatabase } from "./sql";
 
 
 // const TEST_ADDON = require("../../build/Release/test_binding");
-const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Release;
+const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Debug;
 
 
 
@@ -23,7 +23,7 @@ const angularBrowserOptions = {
   opacity: 1.00, 
   backgroundColor: '#965BAE',
   minWidth: 880, 
-  minHeight: 680, 
+  minHeight: 680,
   width: 961,
   height: 888,
   show: false, 
@@ -39,10 +39,10 @@ const angularBrowserOptions = {
 };
 const angular_process: ElectronProcess = new ElectronProcess(angularBrowserOptions);
 angular_process.AddEntryPoint(
-  'http://localhost:4200', ConfigTypeFlags.Release, SourceTypeFlags.Remote
+  'http://localhost:4200', ConfigTypeFlags.Debug, SourceTypeFlags.Remote
 );
 angular_process.AddEntryPoint(
-  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Debug, SourceTypeFlags.Local
+  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Release, SourceTypeFlags.Local
 );
 
 

@@ -71,7 +71,7 @@ button:hover {
     background-color: #003362;
 }
 
-.toolbar .option {
+button.option {
     margin: 3px;
 }
 

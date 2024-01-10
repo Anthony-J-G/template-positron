@@ -1,10 +1,25 @@
 <div class="content">
 
-    <h2 class="pop-text">Load Table</h2>
-    <p class="pop-text">Click to load a table from the backend using SQLite3!
-    </p>
+    <div *ngIf="!this.hasData()" id="load-header">
+        <h2 class="pop-text">Load Table</h2>
+        <p class="pop-text">
+            Click to load a table from the backend using SQLite3!
+        </p>
+    </div>
 
-    <div *ngIf="!this.hasData()">
+    <div *ngIf="this.hasData()" id="load-header-s">
+        <h2 class="pop-text">Load Table</h2>
+        <p class="pop-text">
+            Click to reload the table! (Table load succeded in {{ getTimeToFetch() }}ms.)
+            <button class="option" (click)="loadTable()">
+                Reload Table
+            </button>
+        </p>
+    </div>
+    
+
+    <div *ngIf="!this.hasData() && !this.hasError()">
+        <!-- Display Nothing if Table is Empty -->
         <div class="card highlight-card card-small">
             <p class="pop-text">
                 Table empty!
@@ -13,12 +28,23 @@
         </div>        
     </div>
 
+    <div *ngIf="this.hasError()">
+        <!-- Display Table Read Error -->
+        <div class="card highlight-card card-small">
+            <p class="pop-text">
+                {{ this.getCurrentError() }}
+            </p>
+            <button class="option" (click)="loadTable()">Attempt Reload</button>
+        </div>        
+    </div>
+
     <div *ngIf="this.hasData()">
+        <!-- Display Table -->
         <table>
             <thead>
                 <tr>
-                    <th *ngFor="let column of columns; index as i; first as isFirst">
-                        {{ column }}
+                    <th *ngFor="let col of columns; index as i; first as isFirst">
+                        {{ col }}
                     </th>
                 </tr>
             </thead>
