@@ -4,13 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoPageComponent } from './pages/demo/demo.component';
-import { BackendConnTestPageComponent } from './pages/backend-conn-test/backend-conn-test.component';
+import { BackendPageComponent } from './pages/backend/backend.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoPageComponent,
-    BackendConnTestPageComponent,
+    BackendPageComponent,
   ],
   imports: [
     BrowserModule,

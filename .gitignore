@@ -158,6 +158,10 @@ Settings.settings
 [Bb]uild/
 [Bb]uild/**
 
+# Ignore Electron Packaging Folders
+[Oo]ut/
+[Oo]ut/**
+
 # Ignore VS / VS Code settings directory
 .vs
 .vscode

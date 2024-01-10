@@ -4,11 +4,14 @@ import * as fs from "fs";
 import * as path from "path";
 import * as url from "url";
 import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
+import { LaunchPython } from "./python";
+import { getDemoTable, openDatabase } from "./sql";
 
 
 
 // const TEST_ADDON = require("../../build/Release/test_binding");
-const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Release;
+const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Debug;
+
 
 
 const angularBrowserOptions = { 
@@ -18,17 +21,17 @@ const angularBrowserOptions = {
   // titleBarStyle: 'hidden',
   title: 'Positron Template Project', 
   opacity: 1.00, 
-  backgroundColor: '#000000', 
+  backgroundColor: '#965BAE',
   minWidth: 880, 
-  minHeight: 680, 
-  width: 961, 
+  minHeight: 680,
+  width: 961,
   height: 888,
   show: false, 
   webPreferences: { 
     preload: path.join(
       process.cwd(), 'Source/Angular/preload.js'
     ),
-    sandbox: false, 
+    sandbox: false,
     nodeIntegration: false, 
     contextIsolation: true,
     webviewTag: false, 
@@ -36,10 +39,10 @@ const angularBrowserOptions = {
 };
 const angular_process: ElectronProcess = new ElectronProcess(angularBrowserOptions);
 angular_process.AddEntryPoint(
-  'http://localhost:4200', ConfigTypeFlags.Release, SourceTypeFlags.Remote
+  'http://localhost:4200', ConfigTypeFlags.Debug, SourceTypeFlags.Remote
 );
 angular_process.AddEntryPoint(
-  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Debug, SourceTypeFlags.Local
+  path.join(__dirname, '../../Binaries/GUI/index.html'), ConfigTypeFlags.Release, SourceTypeFlags.Local
 );
 
 
@@ -56,6 +59,15 @@ app.on("ready", async _ => {
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
   });
+
+  ipcMain.handle('sql:get-demo', async () => {
+    return await getDemoTable();
+  });
+
+  ipcMain.handle('python:test-script', async () => {
+    LaunchPython("Source/Python/main.py", []);
+  });
+
   ipcMain.on('ping-main', async () => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 
