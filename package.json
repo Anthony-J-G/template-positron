@@ -1,7 +1,9 @@
 {
   "name": "positron-template",
   "version": "0.1.0",
-  "author": {"name": "Anthony J. Guarino"},
+  "author": {
+    "name": "Anthony J. Guarino"
+  },
   "description": "Sample template for developing Electron Apps",
   "main": "Binaries/electron/main.js",
   "scripts": {
