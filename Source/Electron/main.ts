@@ -61,8 +61,8 @@ app.on("ready", async _ => {
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
   });
-  ipcMain.handle('cpp:execute-demo-func', async () => {
-    return await CppAddon.addNumbers(255, 1);
+  ipcMain.handle('cpp:execute-demo-func', async (event, number1: number, number2: number) => {
+    return await CppAddon.addNumbers(number1, number2);
   });
   ipcMain.handle('sql:get-demo', async () => {
     return await getDemoTable();

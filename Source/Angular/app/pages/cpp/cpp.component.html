@@ -4,13 +4,14 @@
     <div class="card">
         <div class="text-field">
             <label class="pop-text">First Number</label>
-            <input [(ngModel)]="firstNumber" type="text">
+            <input [(ngModel)]="firstNumParam" type="text" placeholder="0">
         </div>
         <div class="text-field">
             <label class="pop-text">Second Number</label>
-            <input [(ngModel)]="secondNumber" type="text">
+            <input [(ngModel)]="secondNumParam" type="text" placeholder="0">
         </div>
-        <button>Calculate!</button>
+        <button (click)="solve()">Calculate!</button>
+        <h1>{{ getSolution() }}</h1>
     </div>
     
 </div>

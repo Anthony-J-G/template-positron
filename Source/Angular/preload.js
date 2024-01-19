@@ -2,7 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 
 contextBridge.exposeInMainWorld('api', {
-  getAddon:       () => ipcRenderer.invoke('cpp:execute-demo-func'),
+  runAddon:       (number1, number2) => ipcRenderer.invoke('cpp:execute-demo-func', number1, number2),
   getTable:       () => ipcRenderer.invoke('sql:get-demo'),
   pingMain:       () => ipcRenderer.send('ping-main'),
   openFile:       () => ipcRenderer.invoke('dialog:openFile'),
