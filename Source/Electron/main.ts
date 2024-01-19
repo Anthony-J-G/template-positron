@@ -7,6 +7,8 @@ import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
 import { LaunchPython } from "./python";
 import { getDemoTable, openDatabase } from "./sql";
 
+const CppAddon = require("../../build/Release/SampleAddon");
+
 
 
 // const TEST_ADDON = require("../../build/Release/test_binding");
@@ -49,7 +51,7 @@ angular_process.AddEntryPoint(
 async function handleFileOpen () {
   const { canceled, filePaths } = await dialog.showOpenDialog({})
   if (!canceled) {
-    return filePaths[0]
+    return filePaths[0];
   }
 }
 
@@ -59,7 +61,9 @@ app.on("ready", async _ => {
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
   });
-
+  ipcMain.handle('cpp:execute-demo-func', async (event, number1: number, number2: number) => {
+    return await CppAddon.addNumbers(number1, number2);
+  });
   ipcMain.handle('sql:get-demo', async () => {
     return await getDemoTable();
   });

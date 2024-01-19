@@ -1,12 +1,42 @@
 .content {
-    display: flex;
+    max-width: 960px;
     margin: 82px auto 32px;
     padding: 0 16px;
-    max-width: 960px;
+    
+    display: flex;
     flex-direction: column;
     align-items: center;
+
     color: #fafafa;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 8px 0;
+}
+
+p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+h1.pop-text,
+h2.pop-text,
+h3.pop-text,
+h4.pop-text,
+h5.pop-text,
+h6.pop-text,
+p.pop-text {
+    color: #fafafa;
+    text-shadow: 2px 2px 5px #0c0c0c;
+
+}
+
 
 tr {
     padding: 5px;
