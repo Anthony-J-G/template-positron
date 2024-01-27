@@ -53,11 +53,9 @@ async function handleFileOpen () {
 
 //App LISTENERS
 app.on("ready", async _ => {
+  
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
-  });
-  ipcMain.handle('cpp:execute-demo-func', async (event, number1: number, number2: number) => {
-    return await CppAddon.addNumbers(number1, number2);
   });
   ipcMain.handle('sql:get-demo', async () => {
     return await getDemoTable();
@@ -70,6 +68,9 @@ app.on("ready", async _ => {
   ipcMain.on('ping-main', async () => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 
+  ipcMain.handle('cpp:execute-demo-func', async (event, number1: number, number2: number) => {
+    return await CppAddon.addNumbers(number1, number2);
+  });
 
   angular_process.Load();
   
