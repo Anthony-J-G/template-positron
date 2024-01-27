@@ -11,11 +11,6 @@ const CppAddon = require("../../build/Release/SampleAddon");
 
 
 
-// const TEST_ADDON = require("../../build/Release/test_binding");
-const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Debug;
-
-
-
 const angularBrowserOptions = { 
   icon: path.join(
     process.cwd(), 'Source/Angular/favicon.ico'
@@ -76,14 +71,15 @@ app.on("ready", async _ => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 
 
-  angular_process.Load(CONFIGURATION);
+  angular_process.Load();
   
 });
 
 //macOS exclusive, handles soft re-launches
 app.on("activate", async _ => {
   if (!angular_process.hasWindow()) {
-    angular_process.Load(CONFIGURATION);
+    angular_process.Load();
+    
   }
   
 });
