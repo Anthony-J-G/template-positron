@@ -25,8 +25,8 @@ const angularBrowserOptions = {
   height: 888,
   show: false, 
   webPreferences: { 
-    preload: path.join(
-      process.cwd(), 'Source/Angular/preload.js'
+    preload: path.resolve(
+      app.getAppPath(), 'Source/Angular/preload.js'
     ),
     sandbox: false,
     nodeIntegration: false, 
