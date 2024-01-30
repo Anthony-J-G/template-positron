@@ -11,11 +11,6 @@ const CppAddon = require("../../build/Release/SampleAddon");
 
 
 
-// const TEST_ADDON = require("../../build/Release/test_binding");
-const CONFIGURATION: ConfigTypeFlags = ConfigTypeFlags.Debug;
-
-
-
 const angularBrowserOptions = { 
   icon: path.join(
     process.cwd(), 'Source/Angular/favicon.ico'
@@ -30,8 +25,8 @@ const angularBrowserOptions = {
   height: 888,
   show: false, 
   webPreferences: { 
-    preload: path.join(
-      process.cwd(), 'Source/Angular/preload.js'
+    preload: path.resolve(
+      app.getAppPath(), 'Source/Angular/preload.js'
     ),
     sandbox: false,
     nodeIntegration: false, 
@@ -58,11 +53,9 @@ async function handleFileOpen () {
 
 //App LISTENERS
 app.on("ready", async _ => {
+  
   ipcMain.handle('dialog:openFile', (event, ...args) => {
     return handleFileOpen();
-  });
-  ipcMain.handle('cpp:execute-demo-func', async (event, number1: number, number2: number) => {
-    return await CppAddon.addNumbers(number1, number2);
   });
   ipcMain.handle('sql:get-demo', async () => {
     return await getDemoTable();
@@ -75,15 +68,19 @@ app.on("ready", async _ => {
   ipcMain.on('ping-main', async () => {
     console.log("Hello from Renderer Process in Main Process!");
   }) 
+  ipcMain.handle('cpp:execute-demo-func', async (event, number1: number, number2: number) => {
+    return await CppAddon.addNumbers(number1, number2);
+  });
 
-  angular_process.Load(CONFIGURATION);
+  angular_process.Load();
   
 });
 
 //macOS exclusive, handles soft re-launches
 app.on("activate", async _ => {
   if (!angular_process.hasWindow()) {
-    angular_process.Load(CONFIGURATION);
+    angular_process.Load();
+    
   }
   
 });

@@ -14,7 +14,7 @@ export class ElectronBackendService {
     }
   }
 
-  canUseElectron() {
+  canUseElectron(): boolean {
     return !(this.electronApi === null);
   }
 

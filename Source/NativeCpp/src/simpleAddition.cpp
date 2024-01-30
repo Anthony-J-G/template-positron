@@ -1,4 +1,5 @@
-#include <node_api.h>
+#include "api.h"
+
 
 napi_value AddNumbers(napi_env env, napi_callback_info info) {
   size_t argc = 2;
@@ -16,12 +17,3 @@ napi_value AddNumbers(napi_env env, napi_callback_info info) {
 
   return resultValue;
 }
-
-napi_value Init(napi_env env, napi_value exports) {
-  napi_property_descriptor desc = {"addNumbers", 0, AddNumbers, 0, 0, 0, napi_default, 0};
-  napi_define_properties(env, exports, 1, &desc);
-
-  return exports;
-}
-
-NAPI_MODULE(NODE_GYP_MODULE_NAME, Init)

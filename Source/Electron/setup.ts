@@ -10,7 +10,6 @@ export enum ConfigTypeFlags {
     None         = 0 << 0,
     Debug        = 1 << 0,
     Release      = 1 << 1,
-    Distribution = 1 << 2,
 }
 
 export enum SourceTypeFlags {
@@ -99,7 +98,14 @@ export class ElectronProcess {
     }
 
 
-    Load(config_type: ConfigTypeFlags): void {
+    Load(): void {
+        let config_type: ConfigTypeFlags = ConfigTypeFlags.None;
+        if (app.isPackaged) {
+            config_type ^= ConfigTypeFlags.Release;
+        } else {
+            config_type ^= ConfigTypeFlags.Debug;
+        }
+
         this.mainWindow = new BrowserWindow(this.browserOptions);
         const config = this.entryPoints[config_type];
         
