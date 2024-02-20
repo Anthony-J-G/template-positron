@@ -8,3 +8,4 @@ export async function handleFileOpen () {
         return filePaths[0];
     }
 }
+
