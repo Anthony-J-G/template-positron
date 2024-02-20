@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "SampleAddon",
+      "target_name": "NativeAddonInterface",
       "includes": [
         "Source/NativeCpp/config.gypi"
       ]

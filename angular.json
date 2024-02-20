@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "Binaries/GUI",
+            "outputPath": "Binaries/Angular",
             "index": "Source/Angular/index.html",
             "main": "Source/Angular/main.ts",
             "polyfills": [
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

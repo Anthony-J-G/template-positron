@@ -12,6 +12,7 @@
     "build": "ng build",
     "compile": "tsc --p Source/Electron && ng build",
     "electron:start": "npm run compile && electron .",
+    "angular:serve": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "package": "electron-forge package",
