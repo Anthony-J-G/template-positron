@@ -53,9 +53,9 @@ class EntryPoint {
 
 
 export class ElectronProcess {
-    private mainWindow: BrowserWindow      = null;
-    private browserOptions: any     = null;
-    private entryPoints: Object     = {};
+    private mainWindow: BrowserWindow   = null;
+    private browserOptions: any         = null;
+    private entryPoints: Object         = {};
   
     // Constructor to initialize the object with values
     constructor(browserOptions: any) {

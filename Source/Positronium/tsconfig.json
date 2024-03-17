@@ -2,7 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
       "baseUrl": "./",
-      "outDir": "../../Binaries/electron",
+      "outDir": "../../Binaries/Positron",
       "sourceMap": true,
       "declaration": false,
       "module": "commonjs",
