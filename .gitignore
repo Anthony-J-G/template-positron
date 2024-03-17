@@ -81,6 +81,7 @@
 
 
 # Other configuration and markup files
+!*.astro
 !*.ini
 !*.json
 !*.tps
@@ -98,8 +99,10 @@
 !.dockerignore
 !.editorconfig
 !.plist
+!*.proto
 !.yaml
 !.yml
+
 
 # Specific names
 !README
@@ -136,6 +139,8 @@ Settings.settings
 [Ll]ib/**
 [Ll]ibs/**
 [Vv]endor/**
+# Add exception for Google Protocol Buffer files
+!Libraries/protobuf/config.gypi
 # Add exception for premake5 build system
 !Libraries/Premake5
 !Libraries/Premake5/premake5.exe
