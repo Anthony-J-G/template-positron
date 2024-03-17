@@ -139,7 +139,9 @@ Settings.settings
 [Ll]ib/**
 [Ll]ibs/**
 [Vv]endor/**
-# Add exception for Google Protocol Buffer files
+# Add exception for Google ProtocolBuffer files
+!Libraries/protobuf/
+!Libraries/protobuf/README.md
 !Libraries/protobuf/config.gypi
 # Add exception for premake5 build system
 !Libraries/Premake5
