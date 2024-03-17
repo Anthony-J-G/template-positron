@@ -93,13 +93,14 @@
 !*.html.template
 !*.css
 !*.udn
+!*.proto
+!*.mjs
 !*.config
 !*.version
 !.git*
 !.dockerignore
 !.editorconfig
 !.plist
-!*.proto
 !.yaml
 !.yml
 
