@@ -1,6 +1,15 @@
+
 // Import the child_process module
 import { spawn } from 'child_process';
+import { ipcMain } from 'electron';
 
+
+export function addPythonHandles() {
+    ipcMain.handle('python:test-script', async () => {
+        LaunchPython("Source/Python/main.py", []);
+    });
+
+}
 
 
 export function LaunchPython(script: string, argv: Array<string>): void  {

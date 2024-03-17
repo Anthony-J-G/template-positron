@@ -1,8 +1,6 @@
 import { app, shell, session, ipcMain, BrowserWindow, globalShortcut, Menu, MenuItem } from "electron";
 import * as os from "os";
 import * as fs from "fs";
-import * as path from "path";
-import * as url from "url";
 
 
 
@@ -31,21 +29,20 @@ class EntryPoint {
         
     }
 
-    GetEntryPoint(): string {
+    public GetEntryPoint(): string {
         return this.entryPoint;
     }
 
     private SetEntryPoint(newEntryPoint: string): boolean {
+        // If the Entry Point is Local, check to see if the path to it actually exists
         if (this.source & SourceTypeFlags.Local && !fs.existsSync(newEntryPoint)) {
-            console.log(this.source & SourceTypeFlags.Local);
-
-            console.error("No release found");
+            console.error(`Path to EntryPoint '${newEntryPoint}' missing!`);
     
             setTimeout(() => {
                 app.quit();
             }, 0);
         
-            throw Error("No Electron GUI found! Did you compile it properly?");
+            throw Error("Can't set EntryPoint because it doesn't exist! Did you compile it properly?");
         }
         
         this.entryPoint = newEntryPoint;
