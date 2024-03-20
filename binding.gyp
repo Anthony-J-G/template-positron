@@ -12,10 +12,10 @@
         "<(module_root_dir)/Libraries/protobuf/build/lib/",
       ],
       "libraries": [
-        "libprotobuf.lib",
+        "-llibprotobuf.lib",
       ],
-      "dependencies": [
+      "dependencies": [ 
       ]
-    }
+    },
   ]
 }

@@ -1,7 +1,7 @@
 import { app } from "electron";
 import * as path from "path";
 import * as url from "url";
-import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "./setup";
+import { ElectronProcess, ConfigTypeFlags, SourceTypeFlags } from "../setup";
 
 const angularBrowserOptions = { 
     icon: path.join(

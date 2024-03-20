@@ -3,6 +3,8 @@
         "src\\API.h",
         "src\\Context.cpp",
         "src\\Context.h",
+        "src\\Buffers\\CVar.pb.cc",
+        "src\\Buffers\\CVar.pb.h",
         "src\\Interfaces\\ConfigManager.cpp",
         "src\\Interfaces\\ConfigManager.h",
         "src\\Interfaces\\Console.cpp",
@@ -11,8 +13,6 @@
         "src\\Interfaces\\CrashHandler.h",
         "src\\Interfaces\\ResourceManager.cpp",
         "src\\Interfaces\\ResourceManager.h",
-        "src\\Public\\Astronomy.cpp",
-        "src\\Public\\Initialize.cpp",
         "src\\Public\\Runtime.cpp",
         "src\\Public\\SimpleAddition.cpp"
     ],

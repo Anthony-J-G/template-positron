@@ -5,7 +5,7 @@ import * as url from "url";
 import { getDemoTable, openDatabase } from "./sql";
 import * as path from "path";
 
-import { GetEditorConfig } from "./EntryPoints/editor";
+import { GetEditorConfig } from "./EntryPoints/astro";
 import { addAstronomyHandles } from "./Handles/astronomy";
 import { buildEditorMenu } from "./Menus/editor"
 

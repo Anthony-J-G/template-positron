@@ -1,6 +1,8 @@
 import * as sqlite3 from 'sqlite3';
 import * as path from "path";
 
+
+
 // Open a SQLite database in-memory (you can use a file path for a persistent database)
 // const db = new sqlite3.Database(':memory:');
 const DATABASE_PATH = path.join(process.cwd(), 'test.sqlite');

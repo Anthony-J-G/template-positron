@@ -11,14 +11,14 @@ const delverAstro = {
   title: 'Playground',
   opacity: 1.00,
   backgroundColor: '#965BAE',
-  minWidth: 880, 
+  minWidth: 880,
   minHeight: 680,
   width: 961,
   height: 888,
-  show: false, 
-  webPreferences: { 
+  show: false,
+  webPreferences: {
     preload: path.resolve(
-      app.getAppPath(), 'Source/Positron/Preloads/editor.js'
+      app.getAppPath(), 'Source/Astro/preload.js'
     ),
     sandbox: false,
     nodeIntegration: false, 
@@ -31,7 +31,7 @@ astro_renderer_process.AddEntryPoint(
   'http://localhost:4321', ConfigTypeFlags.Debug, SourceTypeFlags.Remote
 );
 astro_renderer_process.AddEntryPoint(
-  path.join(__dirname, '../../../Source/Editor/src/pages/index.astro'), ConfigTypeFlags.Release, SourceTypeFlags.Local
+  path.join(app.getAppPath(), 'Binaries/Astro/index.html'), ConfigTypeFlags.Release, SourceTypeFlags.Local
 );
 
 

@@ -1,8 +1,6 @@
 import { app, shell, session, ipcMain, BrowserWindow, globalShortcut, Menu, MenuItem } from "electron";
 import * as os from "os";
 import * as fs from "fs";
-import * as path from "path";
-import * as url from "url";
 
 
 
@@ -26,9 +24,9 @@ class EntryPoint {
 
     constructor(entry: string, src: SourceTypeFlags) {
         this.source = src;
-        
+
         this.SetEntryPoint(entry);
-        
+
     }
 
     public GetEntryPoint(): string {
@@ -55,9 +53,9 @@ class EntryPoint {
 
 
 export class ElectronProcess {
-    private mainWindow: BrowserWindow      = null;
-    private browserOptions: any     = null;
-    private entryPoints: Object     = {};
+    private mainWindow: BrowserWindow   = null;
+    private browserOptions: any         = null;
+    private entryPoints: Object         = {};
   
     // Constructor to initialize the object with values
     constructor(browserOptions: any) {
@@ -128,8 +126,8 @@ export class ElectronProcess {
             if (config & ConfigTypeFlags.Debug && !this.mainWindow.isMaximized()) {
                 this.mainWindow.webContents.openDevTools();
             } //Open dev tools automatically if dev mode and not maximized
-                
-        });        
+
+        });
     }
 
   
