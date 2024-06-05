@@ -26,7 +26,8 @@ const delverAstro = {
     webviewTag: false, 
   }
 };
-const astro_renderer_process: ElectronProcess = new ElectronProcess(delverAstro);
+// Create a new Electron Process for the renderer
+const astro_renderer_process: ElectronProcess = new ElectronProcess("SampleAstro", delverAstro);
 astro_renderer_process.AddEntryPoint(
   'http://localhost:4321', ConfigTypeFlags.Debug, SourceTypeFlags.Remote
 );

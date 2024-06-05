@@ -53,12 +53,16 @@ class EntryPoint {
 
 
 export class ElectronProcess {
+    private processName: string;
     private mainWindow: BrowserWindow   = null;
     private browserOptions: any         = null;
     private entryPoints: Object         = {};
   
     // Constructor to initialize the object with values
-    constructor(browserOptions: any) {
+    constructor(name: string, browserOptions: any) {
+        // Give the process an easily recognizable name
+        this.processName = name;
+
         //Browser Window common options
         this.browserOptions = browserOptions;
 
@@ -131,7 +135,6 @@ export class ElectronProcess {
     }
 
   
-    // Method to get the full name of the person
     hasWindow(): boolean {
         return !(this.mainWindow === null);
     }

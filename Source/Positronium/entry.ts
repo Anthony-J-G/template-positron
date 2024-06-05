@@ -1,0 +1,6 @@
+
+class EntryManager {
+    constructor(parameters) {
+        
+    }
+}

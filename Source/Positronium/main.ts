@@ -6,8 +6,8 @@ import { getDemoTable, openDatabase } from "./sql";
 import * as path from "path";
 
 import { GetEditorConfig } from "./EntryPoints/astro";
-import { addAstronomyHandles } from "./Handles/astronomy";
 import { buildEditorMenu } from "./Menus/editor"
+import { RegisterHandles } from "handles";
 
 
 const renderer_process = GetEditorConfig();
@@ -15,8 +15,7 @@ const renderer_process = GetEditorConfig();
 
 //App LISTENERS
 app.on("ready", async _ => {
-  addAstronomyHandles()
-  buildEditorMenu();
+  RegisterHandles();
 
   renderer_process.Load();
   

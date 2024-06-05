@@ -4,6 +4,7 @@
 import { app, ipcMain } from "electron";
 import * as fs from "fs";
 import * as path from "path";
+import { AddHandles } from "../handles";
 
 
 const addonPath = path.resolve(
@@ -14,12 +15,13 @@ const AddonAPI = require(addonPath);
 
 
 
-async function openGravSystem() {
-    
-}  
+/*
+    Ok so in theory I want to be able to call/create a function here that 
+    modifies the "IpcHandleManager" so that before the Electron process, the
+    handles get added.
+*/
 
-
-export function addAstronomyHandles(): void {
+AddHandles("astronomy", () => {
     console.log(AddonAPI.getContextName());
 
     // Meant for reading in JSON data
@@ -42,4 +44,7 @@ export function addAstronomyHandles(): void {
         return await CppAddon.addNumbers(number1, number2);
     });
     */
-}
+});
+
+
+

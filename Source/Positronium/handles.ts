@@ -5,6 +5,52 @@ import { handleFileOpen } from "./file"
 
 const CppAddon = require("../../build/Release/NativeAddonInterface");
 
+class IpcHandleManager {
+    /**
+     * When building a scalable application, the amount of interactions between the Renderer 
+     * Processes launched by Electron and the Main Process tend to increase dramatically. This
+     * object is designed to assist with that.
+     * 
+     * @param parameters 
+    **/
+
+    public functions: Map<string, any> = new Map();
+
+    constructor(parameters) {
+        
+    }
+
+}
+
+
+const gHandleManager: IpcHandleManager = new IpcHandleManager(1);
+
+
+export function AddHandles(name: string, functionPtr) {
+    /**
+     * Allows for a client Renderer Process that uses Positron
+     * to easily ensure that it's handles are registered before
+     * the RendererProcess is started.
+     * 
+     * @param functionPtr Function to call that initializes each 
+    **/
+
+    gHandleManager.functions.set(name, functionPtr);
+}
+
+
+export function RegisterHandles() {
+    /**
+     * 
+    **/
+
+    gHandleManager.functions.forEach(element => {
+        element();
+    });
+
+
+}
+
 
 export function addHandles(): void {
 
