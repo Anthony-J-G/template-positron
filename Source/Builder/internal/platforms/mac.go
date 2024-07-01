@@ -1,0 +1,5 @@
+package platforms
+
+func MacOS() {
+
+}

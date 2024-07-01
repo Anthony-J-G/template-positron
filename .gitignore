@@ -52,6 +52,11 @@
 !*.aspx
 !*.resx
 
+# Golang source files
+!*.go
+!go.mod
+!go.sum
+
 # Shader formats
 !*.usf
 !*.ush

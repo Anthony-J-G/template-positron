@@ -1,0 +1,2 @@
+// deploy.go
+package build
