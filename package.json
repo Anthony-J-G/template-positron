@@ -4,14 +4,15 @@
   "description": "Sandbox for testing functionality of bridging Electron, HTML, JS/TS with native compiled languages such as C, C++, or Rust",
   "main": "build/electron/main.js",
   "scripts": {
-    "clean": "echo TODO: Not Implemented yet",
-    "compile": "cmake-js compile",
-    "pack": "node esbuild.config.mjs",
-    "build": "npm run compile && npm run pack",
-    "watch": "node esbuild.config.mjs --watch",
-    "start": "electron-forge start",
-    "make": "electron-forge make",
-    "package": "electron-forge package"
+    "clean"   : "echo TODO: Not Implemented yet",
+    "compile" : "cmake-js compile",
+    "pack"    : "node esbuild.config.mjs",
+    "build"   : "npm run compile && npm run pack",
+    "watch"   : "node esbuild.config.mjs --watch",
+    "start"   : "electron-forge start",
+    "make"    : "electron-forge make",
+    "package" : "electron-forge package",
+    "launch"  : "npm run build && npm run start"
   },
   "cmake-js": {
     "runtime": "electron",
