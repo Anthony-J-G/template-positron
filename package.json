@@ -1,62 +1,48 @@
 {
-  "name": "positron-template",
-  "version": "0.1.0",
-  "author": {
-    "name": "Anthony J. Guarino"
-  },
-  "description": "Sample template for developing Electron Apps",
-  "main": "Binaries/Positron/main.js",
+  "name": "template-positron",
+  "version": "1.1.0",
+  "description": "Sandbox for testing functionality of bridging Electron, HTML, JS/TS with native compiled languages such as C, C++, or Rust",
+  "main": "build/electron/main.js",
   "scripts": {
-    "ng": "ng",
+    "clean": "echo TODO: Not Implemented yet",
+    "compile": "cmake-js compile",
+    "pack": "node esbuild.config.mjs",
+    "build": "npm run compile && npm run pack",
+    "watch": "node esbuild.config.mjs --watch",
     "start": "electron-forge start",
-    "build": "ng build",
-    "compile": "tsc --p Source/Positronium && ng build",
-    "electron:start": "npm run compile && electron .",
-    "angular:serve": "ng serve",
-    "astro:dev": "astro dev",
-    "astro:build": "astro build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "package": "electron-forge package"
   },
+  "cmake-js": {
+    "runtime": "electron",
+    "arch": "x64"
+  },
+  "binary": {
+    "napi_versions": [
+      8
+    ]
+  },
+  "author": "Anthony <61360659+Anthony-J-G@users.noreply.github.com>",
+  "license": "MIT",
   "private": true,
-  "dependencies": {
-    "@angular/animations": "^16.2.0",
-    "@angular/common": "^16.2.0",
-    "@angular/compiler": "^16.2.0",
-    "@angular/core": "^16.2.0",
-    "@angular/forms": "^16.2.0",
-    "@angular/platform-browser": "^16.2.0",
-    "@angular/platform-browser-dynamic": "^16.2.0",
-    "@angular/router": "^16.2.0",
-    "astro": "^4.5.5",
-    "child_process": "^1.0.2",
-    "electron-squirrel-startup": "^1.0.0",
-    "rxjs": "~7.8.0",
-    "sqlite3": "^5.1.7",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
-  },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.8",
-    "@angular/cli": "^16.2.8",
-    "@angular/compiler-cli": "^16.2.0",
-    "@electron-forge/cli": "^6.4.2",
-    "@electron-forge/maker-deb": "^6.4.2",
-    "@electron-forge/maker-rpm": "^6.4.2",
-    "@electron-forge/maker-squirrel": "^6.4.2",
-    "@electron-forge/maker-zip": "^6.4.2",
-    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
-    "@types/jasmine": "~4.3.0",
-    "@types/sqlite3": "^3.1.11",
-    "electron": "27.0.3",
-    "jasmine-core": "~4.6.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.1.3"
+    "@electron-forge/cli": "^7.5.0",
+    "@electron-forge/maker-deb": "^7.5.0",
+    "@electron-forge/maker-rpm": "^7.5.0",
+    "@electron-forge/maker-squirrel": "^7.5.0",
+    "@electron-forge/maker-zip": "^7.5.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.5.0",
+    "@electron-forge/plugin-fuses": "^7.5.0",
+    "@electron/fuses": "^1.8.0",
+    "cmake-js": "^7.3.0",
+    "electron": "^33.2.0",
+    "esbuild": "^0.24.0",
+    "node-gyp": "^10.2.0"
+  },
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.1",
+    "node-addon-api": "^8.2.2",
+    "typescript": "^5.6.3"
   }
 }

@@ -1,5 +1,0 @@
-package platforms
-
-func Linux() {
-
-}
