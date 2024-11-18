@@ -14,7 +14,7 @@
       "checkJs": false  // Disable type-checking on JS files
     },
     "include": [
-      "electron/**/*",
+      "src/**/*",
     ],
     "exclude": ["node_modules"]
   }
